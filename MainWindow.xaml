@@ -44,7 +44,7 @@
                             <TextBlock Text="Игровое поле" FontSize="17" FontWeight="Bold"/>
                             <TextBlock Text="Мир муравья в движении" Foreground="#93A198" FontSize="12" Margin="0,8,0,0"/>
                         </StackPanel>
-                        <TextBlock Text="45 на 45" HorizontalAlignment="Right" VerticalAlignment="Center"
+                        <TextBlock x:Name="FieldSizeText" Text="45 на 45" HorizontalAlignment="Right" VerticalAlignment="Center"
                                    Foreground="#91A097" FontSize="12"/>
                     </Grid>
                     <Border Grid.Row="1" Background="#F8FAF7" CornerRadius="8" ClipToBounds="True">
@@ -81,19 +81,36 @@
                         </StackPanel>
                     </Border>
 
+                    <Border Background="White" CornerRadius="18" Padding="24" Margin="0,0,0,16">
+                        <StackPanel>
+                            <TextBlock Text="Настройки" FontSize="17" FontWeight="Bold"/>
+                            <TextBlock Text="Размер поля (от 5 до 100)" FontSize="12" Margin="0,16,0,8"/>
+                            <TextBox x:Name="SizeInput" Text="45" Padding="10,8" BorderBrush="#D8E3DA"/>
+                            <TextBlock Text="На белой клетке" FontSize="12" Margin="0,16,0,8"/>
+                            <ComboBox x:Name="WhiteTurn" SelectedIndex="1" Padding="8,6">
+                                <ComboBoxItem Content="Повернуть налево"/>
+                                <ComboBoxItem Content="Повернуть направо"/>
+                                <ComboBoxItem Content="Идти прямо"/>
+                                <ComboBoxItem Content="Развернуться"/>
+                            </ComboBox>
+                            <TextBlock Text="На чёрной клетке" FontSize="12" Margin="0,16,0,8"/>
+                            <ComboBox x:Name="BlackTurn" SelectedIndex="0" Padding="8,6">
+                                <ComboBoxItem Content="Повернуть налево"/>
+                                <ComboBoxItem Content="Повернуть направо"/>
+                                <ComboBoxItem Content="Идти прямо"/>
+                                <ComboBoxItem Content="Развернуться"/>
+                            </ComboBox>
+                            <Button Content="Применить настройки" Click="ApplySettings_Click" Margin="0,16,0,0"/>
+                            <TextBlock x:Name="SettingsMessage" Text="Применение создаст поле заново." TextWrapping="Wrap"
+                                       FontSize="12" Foreground="#72877B" Margin="0,12,0,0"/>
+                        </StackPanel>
+                    </Border>
+
                     <Border Background="#E8F0E9" CornerRadius="18" Padding="24">
                         <StackPanel>
                             <TextBlock Text="Как это работает" FontSize="16" FontWeight="Bold"/>
-                            <TextBlock Text="Муравей меняет цвет клетки и делает шаг вперёд. Направление зависит от цвета клетки:"
+                            <TextBlock Text="Муравей меняет цвет клетки и делает шаг вперёд. Действия для каждого цвета можно выбрать в настройках."
                                        TextWrapping="Wrap" FontSize="12" LineHeight="18" Foreground="#72877B" Margin="0,8,0,16"/>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                <Border Width="20" Height="20" Background="White" BorderBrush="#CCD9CF" BorderThickness="1" CornerRadius="5" Margin="0,0,8,0"/>
-                                <TextBlock Text="Белая: поворот направо" VerticalAlignment="Center" FontSize="12"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="20" Height="20" Background="#263D33" CornerRadius="5" Margin="0,0,8,0"/>
-                                <TextBlock Text="Чёрная: поворот налево" VerticalAlignment="Center" FontSize="12"/>
-                            </StackPanel>
                         </StackPanel>
                     </Border>
                 </StackPanel>
