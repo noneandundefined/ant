@@ -13,6 +13,7 @@ public partial class MainWindow : Window
     private Rectangle[,] rectangles = new Rectangle[45, 45];
     private int whiteTurn = 1;
     private int blackTurn = 3;
+    private readonly Random random = new();
     private readonly DispatcherTimer timer = new() { Interval = TimeSpan.FromMilliseconds(50) };
     private readonly Polygon ant = new() { Fill = new SolidColorBrush(Color.FromRgb(218, 117, 75)) };
     private int x;
@@ -110,7 +111,31 @@ public partial class MainWindow : Window
         System.Windows.Controls.Canvas.SetTop(ant, y * CellSize);
     }
 
-    private void Generate_Click(object sender, RoutedEventArgs e) => ResetField();
+    private void Generate_Click(object sender, RoutedEventArgs e)
+    {
+        timer.Stop();
+        Array.Clear(cells);
+
+        for (int row = 0; row < size; row++)
+        {
+            for (int column = 0; column < size; column++)
+            {
+                bool isBlack = random.Next(2) == 0;
+                cells[column, row] = isBlack;
+                rectangles[column, row].Fill = isBlack ? Brushes.Black : Brushes.White;
+            }
+        }
+
+        x = size / 2;
+        y = size / 2;
+        direction = 0;
+        steps = 0;
+        StepsText.Text = "0";
+        StatusText.Text = "Случайное поле сгенерировано";
+        StartButton.IsEnabled = true;
+        PauseButton.IsEnabled = false;
+        DrawAnt();
+    }
 
     private void ApplySettings_Click(object sender, RoutedEventArgs e)
     {
