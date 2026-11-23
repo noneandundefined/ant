@@ -100,10 +100,10 @@ public partial class MainWindow : Window
         // Треугольник показывает положение муравья и направление его движения.
         Point[] points = direction switch
         {
-            0 => [new(6, 1), new(1, 11), new(11, 11)],
-            1 => [new(11, 6), new(1, 1), new(1, 11)],
-            2 => [new(6, 11), new(1, 1), new(11, 1)],
-            _ => [new(1, 6), new(11, 1), new(11, 11)]
+            0 => new[] { new Point(6, 1), new Point(1, 11), new Point(11, 11) },
+            1 => new[] { new Point(11, 6), new Point(1, 1), new Point(1, 11) },
+            2 => new[] { new Point(6, 11), new Point(1, 1), new Point(11, 1) },
+            _ => new[] { new Point(1, 6), new Point(11, 1), new Point(11, 11) }
         };
         ant.Points = new PointCollection(points);
         System.Windows.Controls.Canvas.SetLeft(ant, x * CellSize);
